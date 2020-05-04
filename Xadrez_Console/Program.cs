@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using Tabuleiro;
+using Xadrez;
 
 namespace Xadrez_Console
 {
@@ -7,8 +9,19 @@ namespace Xadrez_Console
     {
         static void Main(string[] args)
         {
-            Board board = new Board(8, 8);
-            Screen.printBoard(board);
+            try
+            {
+                Board board = new Board(8, 8);
+
+
+                board.putPiece(new Rook(board, Cor.Preta), new Position(0, 0));
+                board.putPiece(new Rook(board, Cor.Preta), new Position(1, 9));
+                board.putPiece(new King(board, Cor.Preta), new Position(0, 2));
+
+                Screen.printBoard(board);
+            }
+            catch(BoardException e)
+            { Console.WriteLine(e.Message); }
             Console.ReadLine();
         }
     }
